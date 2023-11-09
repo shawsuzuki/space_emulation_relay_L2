@@ -1,0 +1,91 @@
+services:
+  earth_surface_1:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile2
+    container_name: earth_surface_1
+    networks:
+      earth_surface_network:
+        ipv4_address: 172.20.1.1
+    ports:
+    - 50001:5001/tcp
+    - 50001:5001/udp
+    tty: true
+    privileged: true
+
+  earth_orbit_1:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile2
+    container_name: earth_orbit_1
+    networks:
+      earth_orbit_network:
+        ipv4_address: 172.21.1.1
+    ports:
+    - 50002:5001/tcp
+    - 50002:5001/udp
+    tty: true
+    privileged: true
+  
+  moon_orbit_1:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile2
+    container_name: moon_orbit_1
+    networks:
+      moon_orbit_network:
+        ipv4_address: 172.22.1.1
+    ports:
+    - 50003:5001/tcp
+    - 50003:5001/udp
+    tty: true
+    privileged: true
+
+  relay_earth_surface_earth_orbit:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile2
+    container_name: relay_earth_surface_earth_orbit
+    networks:
+      earth_surface_network:
+        ipv4_address: 172.20.0.2
+      earth_orbit_network:
+        ipv4_address: 172.21.0.2
+    ports:
+    - 50004:5001/tcp
+    - 50004:5001/udp
+    tty: true
+    privileged: true
+
+  relay_earth_orbit_moon_orbit:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile2
+    container_name: relay_earth_orbit_moon_orbit
+    networks:
+      earth_orbit_network:
+        ipv4_address: 172.21.0.3
+      moon_orbit_network:
+        ipv4_address: 172.22.0.3
+    ports:
+    - 50005:5001/tcp
+    - 50005:5001/udp
+    tty: true
+    privileged: true
+
+networks:
+  earth_surface_network:
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.20.0.0/16
+  earth_orbit_network:
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.21.0.0/16
+  moon_orbit_network:
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.22.0.0/16

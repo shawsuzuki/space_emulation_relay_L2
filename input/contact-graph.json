@@ -1,0 +1,27 @@
+[
+    {
+      "Contact": "1",
+      "Sender": "earth_surface_1",
+      "Recvr": "earth_orbit_1",
+      "From": "10",
+      "Until": "20",
+      "Rate": "1000"
+    },
+    {
+      "Contact": "2",
+      "Sender": "earth_orbit_1",
+      "Recvr": "moon_orbit_1",
+      "From": "30",
+      "Until": "40",
+      "Rate": "1000"
+    },
+    {
+      "Contact": "3",
+      "Sender": "moon_orbit_1",
+      "Recvr": "moon_surface_1",
+      "From": "20",
+      "Until": "30",
+      "Rate": "1000"
+    }
+  ]
+  
