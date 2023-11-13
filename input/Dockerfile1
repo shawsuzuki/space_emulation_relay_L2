@@ -1,4 +1,4 @@
-FROM  vyos/vyos-build:sagitta-arm64
+FROM  vyos/vyos-build:equuleus
 #なんのイメージを使って作るかを指定
 
 #RUNはコマンドを実行したいとき

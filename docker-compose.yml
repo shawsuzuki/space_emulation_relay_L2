@@ -93,7 +93,7 @@ services:
     privileged: true
     tty: true
   relay_earth_surface_earth_orbit:
-    image: vyos/vyos-build:sagitta-arm64
+    image: vyos/vyos-build:equuleus
     platform: linux/arm64/v8
     build:
       context: ./
