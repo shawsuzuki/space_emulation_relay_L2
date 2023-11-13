@@ -2,19 +2,19 @@ networks:
   earth_orbit_network:
     ipam:
       config:
-      - subnet: 172.21.0.0/16
+      - subnet: 172.26.0.0/16
   earth_surface_network:
     ipam:
       config:
-      - subnet: 172.20.0.0/16
+      - subnet: 172.25.0.0/16
   moon_orbit_network:
     ipam:
       config:
-      - subnet: 172.23.0.0/16
+      - subnet: 172.28.0.0/16
   moon_surface_network:
     ipam:
       config:
-      - subnet: 172.22.0.0/16
+      - subnet: 172.27.0.0/16
 services:
   earth_orbit_1:
     build:
@@ -23,7 +23,7 @@ services:
     container_name: earth_orbit_1
     networks:
       earth_orbit_network:
-        ipv4_address: 172.21.1.2
+        ipv4_address: 172.26.1.2
     ports:
     - 50001:5001
     privileged: true
@@ -35,7 +35,7 @@ services:
     container_name: earth_surface_1
     networks:
       earth_surface_network:
-        ipv4_address: 172.20.1.2
+        ipv4_address: 172.25.1.2
     ports:
     - 50000:5001
     privileged: true
@@ -47,7 +47,7 @@ services:
     container_name: moon_orbit_1
     networks:
       moon_orbit_network:
-        ipv4_address: 172.23.1.2
+        ipv4_address: 172.28.1.2
     ports:
     - 50002:5001
     privileged: true
@@ -59,7 +59,7 @@ services:
     container_name: moon_surface_1
     networks:
       moon_surface_network:
-        ipv4_address: 172.22.1.2
+        ipv4_address: 172.27.1.2
     ports:
     - 50003:5001
     privileged: true
@@ -71,9 +71,9 @@ services:
     container_name: relay_earth_orbit_moon_orbit
     networks:
       earth_orbit_network:
-        ipv4_address: 172.21.0.3
+        ipv4_address: 172.26.0.3
       moon_orbit_network:
-        ipv4_address: 172.23.0.3
+        ipv4_address: 172.28.0.3
     ports:
     - 50007:5001
     privileged: true
@@ -85,9 +85,9 @@ services:
     container_name: relay_earth_orbit_moon_surface
     networks:
       earth_orbit_network:
-        ipv4_address: 172.21.0.4
+        ipv4_address: 172.26.0.4
       moon_surface_network:
-        ipv4_address: 172.22.0.3
+        ipv4_address: 172.27.0.3
     ports:
     - 50008:5001
     privileged: true
@@ -101,9 +101,9 @@ services:
     container_name: relay_earth_surface_earth_orbit
     networks:
       earth_orbit_network:
-        ipv4_address: 172.21.0.2
+        ipv4_address: 172.26.0.2
       earth_surface_network:
-        ipv4_address: 172.20.0.2
+        ipv4_address: 172.25.0.2
     ports:
     - 50004:5001
     privileged: true
@@ -115,9 +115,9 @@ services:
     container_name: relay_earth_surface_moon_orbit
     networks:
       earth_surface_network:
-        ipv4_address: 172.20.0.3
+        ipv4_address: 172.25.0.3
       moon_orbit_network:
-        ipv4_address: 172.23.0.2
+        ipv4_address: 172.28.0.2
     ports:
     - 50005:5001
     privileged: true
@@ -129,9 +129,9 @@ services:
     container_name: relay_earth_surface_moon_surface
     networks:
       earth_surface_network:
-        ipv4_address: 172.20.0.4
+        ipv4_address: 172.25.0.4
       moon_surface_network:
-        ipv4_address: 172.22.0.2
+        ipv4_address: 172.27.0.2
     ports:
     - 50006:5001
     privileged: true
@@ -143,9 +143,9 @@ services:
     container_name: relay_moon_orbit_moon_surface
     networks:
       moon_orbit_network:
-        ipv4_address: 172.23.0.4
+        ipv4_address: 172.28.0.4
       moon_surface_network:
-        ipv4_address: 172.22.0.4
+        ipv4_address: 172.27.0.4
     ports:
     - 50009:5001
     privileged: true
