@@ -25,7 +25,7 @@ services:
       earth_orbit_network:
         ipv4_address: 172.21.1.2
     ports:
-    - 50002:5001
+    - 50001:5001
     privileged: true
     tty: true
   earth_surface_1:
@@ -40,18 +40,6 @@ services:
     - 50000:5001
     privileged: true
     tty: true
-  earth_surface_2:
-    build:
-      context: ./
-      dockerfile: ./input/Dockerfile
-    container_name: earth_surface_2
-    networks:
-      earth_surface_network:
-        ipv4_address: 172.20.2.2
-    ports:
-    - 50001:5001
-    privileged: true
-    tty: true
   moon_orbit_1:
     build:
       context: ./
@@ -61,7 +49,7 @@ services:
       moon_orbit_network:
         ipv4_address: 172.23.1.2
     ports:
-    - 50003:5001
+    - 50002:5001
     privileged: true
     tty: true
   moon_surface_1:
@@ -73,31 +61,7 @@ services:
       moon_surface_network:
         ipv4_address: 172.22.1.2
     ports:
-    - 50004:5001
-    privileged: true
-    tty: true
-  moon_surface_2:
-    build:
-      context: ./
-      dockerfile: ./input/Dockerfile
-    container_name: moon_surface_2
-    networks:
-      moon_surface_network:
-        ipv4_address: 172.22.2.2
-    ports:
-    - 50005:5001
-    privileged: true
-    tty: true
-  moon_surface_3:
-    build:
-      context: ./
-      dockerfile: ./input/Dockerfile
-    container_name: moon_surface_3
-    networks:
-      moon_surface_network:
-        ipv4_address: 172.22.3.2
-    ports:
-    - 50006:5001
+    - 50003:5001
     privileged: true
     tty: true
   relay_earth_orbit_moon_orbit:
@@ -111,7 +75,7 @@ services:
       moon_orbit_network:
         ipv4_address: 172.23.0.3
     ports:
-    - 50010:5001
+    - 50007:5001
     privileged: true
     tty: true
   relay_earth_orbit_moon_surface:
@@ -125,13 +89,15 @@ services:
       moon_surface_network:
         ipv4_address: 172.22.0.3
     ports:
-    - 50011:5001
+    - 50008:5001
     privileged: true
     tty: true
   relay_earth_surface_earth_orbit:
+    image: vyos/vyos-build:sagitta-arm64
+    platform: linux/arm64/v8
     build:
       context: ./
-      dockerfile: ./input/Dockerfile
+      dockerfile: ./input/Dockerfile1
     container_name: relay_earth_surface_earth_orbit
     networks:
       earth_orbit_network:
@@ -139,7 +105,7 @@ services:
       earth_surface_network:
         ipv4_address: 172.20.0.2
     ports:
-    - 50007:5001
+    - 50004:5001
     privileged: true
     tty: true
   relay_earth_surface_moon_orbit:
@@ -153,7 +119,7 @@ services:
       moon_orbit_network:
         ipv4_address: 172.23.0.2
     ports:
-    - 50008:5001
+    - 50005:5001
     privileged: true
     tty: true
   relay_earth_surface_moon_surface:
@@ -167,7 +133,7 @@ services:
       moon_surface_network:
         ipv4_address: 172.22.0.2
     ports:
-    - 50009:5001
+    - 50006:5001
     privileged: true
     tty: true
   relay_moon_orbit_moon_surface:
@@ -181,7 +147,7 @@ services:
       moon_surface_network:
         ipv4_address: 172.22.0.4
     ports:
-    - 50012:5001
+    - 50009:5001
     privileged: true
     tty: true
 version: '3'

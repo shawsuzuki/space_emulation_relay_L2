@@ -10,7 +10,7 @@ def get_subnet_base_ip(subnet):
 def get_subnet_third_octet(subnet):
     # This assumes a /16 subnet and provides an initial value for the third octet
     base_ip = get_subnet_base_ip(subnet)
-    return f"{　base_ip}.0"
+    return f"{base_ip}.0"
 
 def increment_ip(ip):
     # Increment the last octet of the IP address
@@ -115,7 +115,7 @@ def generate_docker_compose(config):
 
 def main():
     config = ConfigParser()
-    config.read(os.path.join('input', 'emulation.config'))
+    config.read(os.path.join('./input/', 'emulation.config'))
 
     docker_compose_data = generate_docker_compose(config)
     with open('docker-compose.yml', 'w') as file:
