@@ -93,11 +93,9 @@ services:
     privileged: true
     tty: true
   relay_earth_surface_earth_orbit:
-    image: vyos/vyos-build:equuleus
-    platform: linux/arm64/v8
     build:
       context: ./
-      dockerfile: ./input/Dockerfile1
+      dockerfile: ./input/Dockerfile
     container_name: relay_earth_surface_earth_orbit
     networks:
       earth_orbit_network:
